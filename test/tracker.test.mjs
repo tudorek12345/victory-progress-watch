@@ -114,7 +114,9 @@ test('offline build ties the dashboard, dated article, RSS and sitemap to the Pa
   await read('style.css');
   assert.ok(rss.includes(`<guid isPermaLink="true">${BASE}${articlePath}</guid>`));
   assert.ok(rss.includes(`href="${BASE}rss.xml"`));
+  assert.equal(await read('news/feed.xml'), rss);
+  assert.match(archive, /3:41 AM EST/);
   assert.deepEqual([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]),
-    [BASE, `${BASE}news/`, `${BASE}${articlePath}`]);
+    [BASE, `${BASE}news/`, `${BASE}news/2026-11-24-guest-submission-and-hardware-repro/`, `${BASE}${articlePath}`]);
   assert.doesNotMatch([home, archive, article, rss, sitemap].join(''), /VictoryIsInOurName\.hep|portwatch-vi/i);
 });
