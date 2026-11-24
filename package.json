@@ -1,0 +1,11 @@
+{
+  "name": "victory-progress-watch",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "scout": "node scripts/scout.mjs",
+    "test": "node --test"
+  }
+}

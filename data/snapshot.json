@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "repository": "tudorek12345/Leonida",
+  "archived": false,
+  "pushedAt": "2026-11-24T08:18:14.000Z",
+  "progress": {
+    "updatedAt": "2026-11-24T08:00:00.000Z",
+    "tasks": {
+      "trace-single-list": {
+        "status": "completed",
+        "checked": true
+      },
+      "failure-diagnostics": {
+        "status": "completed",
+        "checked": true
+      },
+      "bounded-debug-repro": {
+        "status": "in_progress",
+        "checked": false
+      },
+      "verify-gameplay": {
+        "status": "pending",
+        "checked": false
+      }
+    },
+    "hardwareIntro": {
+      "fps": 30,
+      "frameTimeMs": 33.3
+    },
+    "independentlyReproduced": false,
+    "renderedGameplayVerified": false
+  }
+}

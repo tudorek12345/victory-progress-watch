@@ -1,0 +1,47 @@
+:root {
+  color-scheme: dark;
+  --bg: #101719;
+  --panel: #182226;
+  --line: #354850;
+  --text: #f2f6f4;
+  --muted: #beced0;
+  --accent: #9eebcb;
+  font: 100%/1.6 system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+* { box-sizing: border-box; }
+body { max-width: 68rem; margin: auto; padding-inline: clamp(1rem, 5vw, 4rem); }
+a { color: var(--accent); text-underline-offset: .2em; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: .25rem; }
+.bar, footer { padding-block: 1rem; }
+.bar { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.5rem; border-bottom: 1px solid var(--line); }
+.brand { color: var(--text); font-weight: 750; }
+nav { display: flex; gap: 1rem; }
+nav [aria-current] { color: var(--text); font-weight: 750; }
+main { padding-block: 2.5rem; }
+h1, h2, h3, p { margin-block: 0 .65em; }
+h1, h2, h3 { line-height: 1.15; }
+h1 { font-size: clamp(2rem, 6vw, 4rem); letter-spacing: -.045em; max-width: 19ch; margin-bottom: .3em; }
+p { max-width: 68ch; }
+.intro { margin-bottom: 2rem; }
+.intro > p, .source, footer, time { color: var(--muted); }
+.eyebrow, .intro > .eyebrow { color: var(--accent); font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 750; }
+.grid { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 48rem) { .grid { grid-template-columns: 2fr 3fr; } }
+.panel { border: 1px solid var(--line); border-radius: .75rem; background: var(--panel); padding: 1.25rem; }
+.metric { font-size: clamp(2rem, 5vw, 3.25rem); margin-bottom: .2em; }
+dl { margin-bottom: 0; }
+dd { margin: 0 0 .5rem; font-weight: 700; }
+dt { color: var(--muted); }
+.checklist, .notes { list-style: none; padding: 0; margin: 0; }
+.checklist li { border-top: 1px solid var(--line); display: flex; align-items: baseline; justify-content: space-between; gap: .65rem; padding-block: .65rem; }
+.badge { flex: none; font-size: .8rem; border-radius: .3rem; padding-inline: .35rem; color: var(--text); background: #34474f; }
+.badge.completed { color: #c8ffe8; background: #235345; }
+.badge.in_progress { color: #fff0c4; background: #594721; }
+.source { margin-block: 1rem 2.5rem; }
+.notes li { border-top: 1px solid var(--line); padding-top: .8rem; margin-bottom: .8rem; }
+.notes h3 { margin-block: .25em; }
+article > p { margin-bottom: 1rem; }
+footer { border-top: 1px solid var(--line); font-size: .9rem; }
