@@ -1,0 +1,87 @@
+<!-- Heperkoo: first Rumble stream, time fixed to November 26, 2026 04:00 CET. -->
+<section class="hep-rumble-stream" id="hep-rumble-stream" aria-labelledby="hep-rumble-heading">
+  <div class="hep-rumble-orbit" aria-hidden="true"></div>
+  <div class="hep-rumble-content">
+    <div class="hep-rumble-details">
+      <p class="hep-rumble-eyebrow"><span class="hep-rumble-dot" aria-hidden="true"></span> FIRST RUMBLE STREAM · SCHEDULED</p>
+      <h2 id="hep-rumble-heading">FIRST STREAM.<br><em>ON RUMBLE.</em></h2>
+      <p class="hep-rumble-desc">Heperkoo’s first live development stream. Come by for progress, research and a live look at the work.</p>
+      <div class="hep-rumble-zones">
+        <div><small>CET · CZECHIA</small><strong>THU 26 NOV · 04:00</strong></div>
+        <div><small>EST · NEW YORK</small><strong>WED 25 NOV · 10:00 PM</strong></div>
+      </div>
+      <a class="hep-rumble-button" href="https://rumble.com/user/hepdev" target="_blank" rel="noopener noreferrer">
+        <span class="hep-rumble-play" aria-hidden="true">▶</span>
+        <span>Watch on Rumble</span>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <span class="hep-rumble-address">rumble.com/user/hepdev</span>
+    </div>
+    <div class="hep-rumble-timer-shell">
+      <span class="hep-rumble-clock-label">COUNTDOWN TO FIRST STREAM</span>
+      <div class="hep-rumble-clock" role="timer" aria-label="Time remaining until the Rumble stream" data-event-start="2026-11-26T04:00:00+01:00">
+        <div><b data-rumble-unit="days">00</b><small>DAYS</small></div><i aria-hidden="true">:</i>
+        <div><b data-rumble-unit="hours">00</b><small>HOURS</small></div><i aria-hidden="true">:</i>
+        <div><b data-rumble-unit="minutes">00</b><small>MIN</small></div><i aria-hidden="true">:</i>
+        <div><b data-rumble-unit="seconds">00</b><small>SEC</small></div>
+      </div>
+      <p class="hep-rumble-timer-status" data-rumble-status>Scheduled · stream start not yet independently confirmed</p>
+    </div>
+  </div>
+</section>
+<style>
+.hep-rumble-stream{position:relative;isolation:isolate;overflow:hidden;color:#f7fff8;background:linear-gradient(120deg,#10181b 0%,#181b27 50%,#102c24 100%);border:1px solid rgba(168,255,193,.22);border-radius:22px;box-shadow:0 24px 65px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.08);margin:0 0 2.1rem;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.hep-rumble-stream *{box-sizing:border-box}
+.hep-rumble-orbit{position:absolute;inset:-40%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 70% 40%,rgba(76,224,119,.22),transparent 36%),radial-gradient(ellipse at 18% 75%,rgba(156,100,232,.22),transparent 42%);animation:hepRumbleOrbit 12s ease-in-out infinite alternate}
+.hep-rumble-content{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.82fr);align-items:center;gap:clamp(18px,3vw,52px);padding:clamp(22px,3.8vw,46px)}
+.hep-rumble-eyebrow{display:flex;align-items:center;gap:10px;font-weight:800;font-size:11px;letter-spacing:.13em;color:#92efad;margin:0}
+.hep-rumble-dot{display:inline-block;flex:none;width:9px;height:9px;border-radius:50%;background:#69e990;box-shadow:0 0 17px #63ed8eaa}
+.hep-rumble-details h2{font-size:clamp(30px,4vw,53px);font-weight:860;line-height:1.05;letter-spacing:-.05em;margin:17px 0 13px;max-width:none}
+.hep-rumble-details h2 em{font-style:normal;background:linear-gradient(95deg,#b5ef8c,#83e7bd 50%,#c0abf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hep-rumble-desc{font-size:14px;line-height:1.6;color:#bccbc5;max-width:460px}
+.hep-rumble-zones{display:flex;flex-wrap:wrap;gap:11px;margin:19px 0 21px}
+.hep-rumble-zones>div{display:flex;flex-direction:column;gap:5px;padding:11px 13px;border-radius:11px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10)}
+.hep-rumble-zones small{font-size:10px;font-weight:800;letter-spacing:.12em;color:#98b9a8}
+.hep-rumble-zones strong{font-size:12px;color:#f4fff8}
+.hep-rumble-button{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;text-decoration:none!important;padding:13px 22px;min-height:53px;border-radius:13px;background:linear-gradient(100deg,#70dc45,#34ba77 56%,#4be2a8);background-size:200% 100%;color:#071e13!important;font-weight:840;font-size:14px;box-shadow:0 9px 29px rgba(44,203,110,.30);transition:transform .22s ease,box-shadow .22s ease,background-position .38s ease;overflow:hidden}
+.hep-rumble-button::before{content:"";position:absolute;inset:0;width:40%;background:linear-gradient(95deg,transparent,rgba(255,255,255,.27),transparent);transform:translateX(-150%) skewX(-14deg);animation:hepRumbleShine 4.5s ease-in-out infinite}
+.hep-rumble-button:hover{transform:translateY(-3px);background-position:100% 0;box-shadow:0 15px 37px rgba(46,211,111,.48)}
+.hep-rumble-button:focus-visible{outline:3px solid #ecfff0;outline-offset:4px}
+.hep-rumble-play{font-size:15px}
+.hep-rumble-address{display:block;margin-top:10px;font-size:11px;color:#99bbaa;letter-spacing:.04em}
+.hep-rumble-timer-shell{text-align:center;padding:28px 16px;background:linear-gradient(145deg,rgba(9,16,15,.67),rgba(18,27,31,.56));border:1px solid rgba(190,255,207,.15);border-radius:17px;min-width:0}
+.hep-rumble-clock-label{font-size:11px;letter-spacing:.16em;font-weight:800;color:#95f5b3}
+.hep-rumble-clock{display:flex;align-items:center;justify-content:center;gap:5px;margin:20px 0 18px;min-width:0}
+.hep-rumble-clock>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:9px;align-items:center;padding:16px 3px 13px;border:1px solid rgba(255,255,255,.09);border-radius:10px;background:rgba(255,255,255,.055)}
+.hep-rumble-clock b{font-size:clamp(25px,3.2vw,43px);line-height:1.1;font-variant-numeric:tabular-nums;letter-spacing:-.05em}
+.hep-rumble-clock small{color:#a4b6b2;letter-spacing:.12em;font-size:9px;font-weight:750}
+.hep-rumble-clock i{color:#6ba583;font-size:22px;font-style:normal;transform:translateY(-9px)}
+.hep-rumble-timer-status{font-size:10px;line-height:1.5;letter-spacing:.06em;color:#bed0c6;margin:0}
+@media(max-width:820px){.hep-rumble-content{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:420px){.hep-rumble-content{padding:20px 14px}.hep-rumble-clock{gap:3px}.hep-rumble-clock>div{padding:14px 2px}.hep-rumble-clock b{font-size:26px}.hep-rumble-clock i{font-size:16px}.hep-rumble-button{width:100%}}
+@media(prefers-reduced-motion:reduce){.hep-rumble-orbit,.hep-rumble-button::before{animation:none}.hep-rumble-button{transition:none}}
+@keyframes hepRumbleOrbit{from{transform:translate(-2%,2%) rotate(-3deg)}to{transform:translate(2%,-2%) rotate(3deg)}}
+@keyframes hepRumbleShine{0%,65%,100%{transform:translateX(-160%) skewX(-14deg)}82%{transform:translateX(375%) skewX(-14deg)}}
+</style>
+<script>
+(function(){
+  const root=document.getElementById('hep-rumble-stream');
+  if(!root)return;
+  const clock=root.querySelector('[data-event-start]');
+  const target=Date.parse(clock.getAttribute('data-event-start'));
+  const status=root.querySelector('[data-rumble-status]');
+  const number=(n)=>String(n).padStart(2,'0');
+  const labels=['days','hours','minutes','seconds'];
+  const cells=Object.fromEntries(labels.map(k=>[k,clock.querySelector('[data-rumble-unit="'+k+'"]')]));
+  let interval;
+  function tick(){
+    const total=Math.max(0,Math.ceil((target-Date.now())/1000));
+    const values=[Math.floor(total/86400),Math.floor(total%86400/3600),Math.floor(total%3600/60),total%60];
+    labels.forEach((key,i)=>cells[key].textContent=number(values[i]));
+    if(total===0){status.textContent='Scheduled start reached · check Rumble for live status or replay';root.classList.add('hep-rumble-started');if(interval)clearInterval(interval)}
+  }
+  tick();
+  interval=setInterval(tick,1000);
+  document.addEventListener('visibilitychange',tick);
+})();
+</script>

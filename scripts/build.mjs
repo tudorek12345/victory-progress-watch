@@ -50,7 +50,7 @@ const noteList = (entries, prefix = '') => `<ul class="notes">${entries.map((not
   <li>${time(note.publishedAt)}<h3><a href="${prefix}${notePath(note)}">${escape(note.title)}</a></h3><p>${escape(note.summary)}</p></li>`).join('')}
 </ul>`;
 
-function dashboard(snapshot, entries) {
+function dashboard(snapshot, entries, rumbleBanner) {
   const { progress } = snapshot;
   const complete = Object.values(progress.tasks).filter((task) => task.checked).length;
   const tasks = Object.entries(progress.tasks).map(([id, task]) => `
@@ -59,6 +59,7 @@ function dashboard(snapshot, entries) {
     <section class="intro">
       <p class="eyebrow">Runtime status</p><h1>${name}</h1><p>${summary} Status reflects what the upstream project reported.</p>
     </section>
+    ${rumbleBanner}
     <div class="grid">
       <section class="panel"><p class="eyebrow">Hardware intro only</p>
         <h2 class="metric">${escape(progress.hardwareIntro.fps)} FPS</h2><p>${escape(progress.hardwareIntro.frameTimeMs)} ms per frame in the short intro. This is not a gameplay benchmark.</p>
@@ -92,7 +93,8 @@ export async function build(output = projectFile('dist'), snapshotPath = project
     <article><header class="intro"><p class="eyebrow">Runtime note · ${time(note.publishedAt)}</p><h1>${escape(note.title)}</h1><p>${escape(note.summary)}</p></header>
     ${note.paragraphs.map((paragraph) => `<p>${escape(paragraph)}</p>`).join('\n    ')}
     <p><a href="${feedLink}">Upstream progress feed</a> · <a href="../">Back to news</a></p></article>`)]);
-  const pages = [['', dashboard(snapshot, entries)], ['news/', archive], ...articles];
+  const rumbleBanner = await readFile(projectFile('site/rumble-banner.html'), 'utf8');
+  const pages = [['', dashboard(snapshot, entries, rumbleBanner)], ['news/', archive], ...articles];
   const declaration = '<?xml version="1.0" encoding="UTF-8"?>';
   const rss = `${declaration}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>

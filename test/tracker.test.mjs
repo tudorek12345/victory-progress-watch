@@ -105,6 +105,9 @@ test('offline build ties the dashboard, dated article, RSS and sitemap to the Pa
     read('index.html'), read('news/index.html'), read(`${articlePath}index.html`), read('rss.xml'), read('sitemap.xml'),
   ]);
   assert.match(home, /30 FPS/);
+  assert.match(home, /hep-rumble-stream/);
+  assert.match(home, /2026-11-26T04:00:00\+01:00/);
+  assert.match(home, /https:\/\/rumble\.com\/user\/hepdev/);
   assert.match(home, /2 of 4 tracked milestones checked/);
   assert.match(home, /Rendered gameplay<\/dt><dd>Not verified/);
   assert.match(home, /not a gameplay benchmark/);
