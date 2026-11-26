@@ -1,5 +1,19 @@
 export const notes = [
   {
+    slug: '2026-11-26-software-world-transition',
+    publishedAt: '2026-11-26T03:58:00.000Z',
+    title: 'Series X reached the world transition before memory ran out',
+    summary: 'The Radeon showed the intro at 30 FPS and reached world loading. Controllable gameplay is still unverified.',
+    source: 'local',
+    paragraphs: [
+      'The local test used the VIctory 7900 XTX fork (e2a28ec7) with D3D12 WARP software rendering on an RX 9060 XT host. Lighter loading samples ranged from 12.9 to 20.3 FPS. A memory allocation failed after the run reached its 16 GiB commit cap. The test ended after 155.45 seconds. Controllable gameplay remains unverified.',
+      'The process had read 3.67 GB by 139 seconds. In the last reported interval, the runtime averaged 2,836 dropped draws per frame and reported 1,150 pipelines still being made.',
+      'The Series S software run finished its four-minute timer with 5.96 GiB peak job commit and black captured output. The Series X hardware runs on the RX 9060 XT held 30 FPS through the intro and early loading. Both exhausted the same 16 GiB limit at world entry.',
+      'Prewarming 23 previously used pipelines and using smaller buffer windows let the second Radeon run reach a world submission with 957 indirect operations per frame in the last reported interval. One loading sample spent 371 ms preparing textures in a 385 ms frame. No rendered mission or player response was verified.',
+      'A follow-up allowed 24 GiB of job commit. The physical memory guard ended the job at 15.66 GiB when host RAM available dropped below 3 GiB. The package access rules were restored.',
+    ],
+  },
+  {
     slug: '2026-11-24-guest-submission-and-hardware-repro',
     publishedAt: '2026-11-24T08:41:00.000Z',
     title: 'Bounded world-transition tests narrowed two failures',

@@ -5,7 +5,10 @@ import { notes } from '../data/notes.mjs';
 import { BASE, FEED_PATH, REPOSITORY, SOURCE, TASKS, validateSnapshot } from './model.mjs';
 
 const name = 'Victory Progress Watch';
-const summary = 'Runtime milestones and dated notes from the public Leonida progress feed.';
+const summary = 'Runtime notes and a historical snapshot of the Leonida progress feed.';
+const currentSource = 'tudorek12345/VictoryIsInOurName.hep';
+const currentRepository = `https://github.com/${currentSource}`;
+const takedownNotice = 'https://github.com/github/dmca/blob/master/2026/11/2026-11-24-take-two.md';
 const projectFile = (path) => fileURLToPath(new URL(`../${path}`, import.meta.url));
 const absolute = (path = '') => new URL(path, BASE).href;
 const feedLink = `${REPOSITORY}/blob/HEAD/${FEED_PATH}`;
@@ -40,7 +43,7 @@ function page(path, title, description, body) {
     <nav aria-label="Main"><a href="${home}"${path === '' ? ' aria-current="page"' : ''}>Status</a><a href="${archive}"${path === 'news/' ? ' aria-current="page"' : ''}>News</a><a href="${prefix}rss.xml">RSS</a></nav>
   </header>
   <main>${body}</main>
-  <footer>Single-source tracker · <a href="${REPOSITORY}">${SOURCE}</a></footer>
+  <footer>Historical source · <a href="${REPOSITORY}">${SOURCE}</a></footer>
 </body>
 </html>
 `;
@@ -57,20 +60,20 @@ function dashboard(snapshot, entries, rumbleBanner) {
       <li><span>${escape(TASKS[id])}</span><span class="badge ${task.status}">${statusLabels[task.status]}</span></li>`).join('');
   return page('', name, summary, `
     <section class="intro">
-      <p class="eyebrow">Runtime status</p><h1>${name}</h1><p>${summary} Status reflects what the upstream project reported.</p>
+      <p class="eyebrow">Runtime status</p><h1>${name}</h1><p>Development continues in <a href="${currentRepository}">${currentSource}</a>.</p>
     </section>
     ${rumbleBanner}
     <div class="grid">
-      <section class="panel"><p class="eyebrow">Hardware intro only</p>
+      <section class="panel"><p class="eyebrow">Historical hardware intro</p>
         <h2 class="metric">${escape(progress.hardwareIntro.fps)} FPS</h2><p>${escape(progress.hardwareIntro.frameTimeMs)} ms per frame in the short intro. This is not a gameplay benchmark.</p>
         <dl><dt>Rendered gameplay</dt><dd>${progress.renderedGameplayVerified ? 'Reported verified' : 'Not verified'}</dd>
         <dt>Independent reproduction</dt><dd>${progress.independentlyReproduced ? 'Reported' : 'Not reported'}</dd></dl>
       </section>
-      <section class="panel"><h2>Runtime checklist</h2><p>${complete} of ${Object.keys(TASKS).length} tracked milestones checked</p><ul class="checklist">${tasks}
+      <section class="panel"><h2>Historical runtime checklist</h2><p>${complete} of ${Object.keys(TASKS).length} tracked milestones checked</p><ul class="checklist">${tasks}
       </ul></section>
     </div>
-    <p class="source"><a href="${feedLink}">Upstream progress feed</a> updated ${time(progress.updatedAt)}.<br>
-    ${snapshot.archived ? 'Repository is archived. ' : ''}Latest repository push: ${time(snapshot.pushedAt)}.</p>
+    <p class="source">The last saved Leonida progress snapshot is dated ${time(progress.updatedAt)}. GitHub blocked access to the source repository on November 24, 2026. <a href="${takedownNotice}">GitHub takedown notice</a>.<br>
+    ${snapshot.archived ? 'The snapshot lists the repository as archived. ' : ''}Recorded source push ${time(snapshot.pushedAt)}.</p>
     <section><h2>Latest notes</h2>${entries.length ? noteList(entries.slice(0, 3)) : '<p>No published notes yet.</p>'}<p><a href="news/">News archive →</a></p></section>`);
 }
 
@@ -92,7 +95,7 @@ export async function build(output = projectFile('dist'), snapshotPath = project
   const articles = entries.map((note) => [notePath(note), page(notePath(note), note.title, note.summary, `
     <article><header class="intro"><p class="eyebrow">Runtime note · ${time(note.publishedAt)}</p><h1>${escape(note.title)}</h1><p>${escape(note.summary)}</p></header>
     ${note.paragraphs.map((paragraph) => `<p>${escape(paragraph)}</p>`).join('\n    ')}
-    <p><a href="${feedLink}">Upstream progress feed</a> · <a href="../">Back to news</a></p></article>`)]);
+    <p>${note.source === 'local' ? '' : `<a href="${feedLink}">Historical progress feed</a> · `}<a href="../">Back to news</a></p></article>`)]);
   const rumbleBanner = await readFile(projectFile('site/rumble-banner.html'), 'utf8');
   const pages = [['', dashboard(snapshot, entries, rumbleBanner)], ['news/', archive], ...articles];
   const declaration = '<?xml version="1.0" encoding="UTF-8"?>';

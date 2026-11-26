@@ -101,10 +101,17 @@ test('offline build ties the dashboard, dated article, RSS and sitemap to the Pa
   await build(out, snapshotPath);
   const read = (path) => readFile(join(out, path), 'utf8');
   const articlePath = 'news/2026-11-24-intro-and-world-entry/';
-  const [home, archive, article, rss, sitemap] = await Promise.all([
-    read('index.html'), read('news/index.html'), read(`${articlePath}index.html`), read('rss.xml'), read('sitemap.xml'),
+  const localArticlePath = 'news/2026-11-26-software-world-transition/';
+  const [home, archive, article, localArticle, rss, sitemap] = await Promise.all([
+    read('index.html'), read('news/index.html'), read(`${articlePath}index.html`),
+    read(`${localArticlePath}index.html`), read('rss.xml'), read('sitemap.xml'),
   ]);
   assert.match(home, /30 FPS/);
+  assert.match(home, /Development continues in <a href="https:\/\/github\.com\/tudorek12345\/VictoryIsInOurName\.hep">/);
+  assert.match(home, /Historical hardware intro/);
+  assert.match(home, /Historical runtime checklist/);
+  assert.match(home, /GitHub blocked access to the source repository on November 24, 2026/);
+  assert.match(home, /https:\/\/github\.com\/github\/dmca\/blob\/master\/2026\/11\/2026-11-24-take-two\.md/);
   assert.match(home, /hep-rumble-stream/);
   assert.match(home, /2026-11-26T04:00:00\+01:00/);
   assert.match(home, /https:\/\/rumble\.com\/user\/hepdev/);
@@ -112,14 +119,20 @@ test('offline build ties the dashboard, dated article, RSS and sitemap to the Pa
   assert.match(home, /Rendered gameplay<\/dt><dd>Not verified/);
   assert.match(home, /not a gameplay benchmark/);
   assert.ok(archive.includes(`href="../${articlePath}"`));
+  assert.ok(archive.includes(`href="../${localArticlePath}"`));
+  assert.match(localArticle, /D3D12 WARP software rendering/);
+  assert.match(localArticle, /Controllable gameplay remains unverified/);
+  assert.doesNotMatch(localArticle, /Historical progress feed/);
   assert.ok(article.includes(`rel="canonical" href="${BASE}${articlePath}"`));
   assert.match(article, /href="\.\.\/\.\.\/style\.css"/);
   await read('style.css');
   assert.ok(rss.includes(`<guid isPermaLink="true">${BASE}${articlePath}</guid>`));
+  assert.ok(rss.includes(`<guid isPermaLink="true">${BASE}${localArticlePath}</guid>`));
   assert.ok(rss.includes(`href="${BASE}rss.xml"`));
   assert.equal(await read('news/feed.xml'), rss);
   assert.match(archive, /3:41 AM EST/);
   assert.deepEqual([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]),
-    [BASE, `${BASE}news/`, `${BASE}news/2026-11-24-guest-submission-and-hardware-repro/`, `${BASE}${articlePath}`]);
-  assert.doesNotMatch([home, archive, article, rss, sitemap].join(''), /VictoryIsInOurName\.hep|portwatch-vi/i);
+    [BASE, `${BASE}news/`, `${BASE}${localArticlePath}`, `${BASE}news/2026-11-24-guest-submission-and-hardware-repro/`, `${BASE}${articlePath}`]);
+  assert.doesNotMatch([archive, article, localArticle, rss, sitemap].join(''), /VictoryIsInOurName\.hep|portwatch-vi/i);
+  assert.doesNotMatch(home, /portwatch-vi/i);
 });
